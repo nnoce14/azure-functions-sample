@@ -9,9 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "tscheck": "tsc --noEmit --watch"
-    
   },
   "dependencies": {
+    "antd": "^5.12.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
