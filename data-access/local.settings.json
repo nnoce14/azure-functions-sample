@@ -1,0 +1,4 @@
+{
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "QUEUE_STORAGE_URL": "UseLocalDevelopmentStorage=true"
+}
