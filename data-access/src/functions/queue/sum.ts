@@ -18,7 +18,7 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
     {
       number1: data.processedNumber1,
       number2: data.processedNumber2,
-      sum,
+      sum: sum,
       isDataUpdated: true,
     }
   );
