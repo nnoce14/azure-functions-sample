@@ -2,6 +2,7 @@ import { app, HttpRequest, HttpResponseInit, InvocationContext, output } from '@
 import { Counter } from '../../counter';
 
 interface SampleDataType {
+  userId: number;
   number1: number;
   number2: number;
 }
@@ -24,6 +25,7 @@ app.http("processNumbers", {
     console.log(data.number2);
     const processedNumber1 = data.number1 * 3;
     const processedNumber2 = data.number2 * 3;
+    const userId = data.userId;
 
     let counter = Counter.getInstance();
     counter.increment();
@@ -32,6 +34,7 @@ app.http("processNumbers", {
     const result = JSON.stringify({
       processedNumber1,
       processedNumber2,
+      userId
     });
 
     context.extraOutputs.set(queueOutput, result);
