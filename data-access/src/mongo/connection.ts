@@ -4,9 +4,8 @@ import { ModelLoader } from "./models/model-loader";
 
 export class MongoConnection {
     static #connection: Connection;
-    static #models: { [key: string]: Model<any> } = {};
 
-    public static async connect(): Promise<Connection> {
+    public static async getConnection(): Promise<Connection> {
         if (!this.#connection || (this.#connection.readyState !== 1 && this.#connection.readyState !== 2)) {
             console.log('MongoDB Connection not found. Creating new connection...');
             const connectionString = process.env.MONGODB_URI;
@@ -17,14 +16,10 @@ export class MongoConnection {
                 autoIndex: true
             } as ConnectOptions);
 
-            this.#models = ModelLoader.loadModels(this.#connection);
+            ModelLoader.loadModels(this.#connection);
         }
 
         return this.#connection;
-    }
-
-    public static getModel(modelName: string): Model<IData> {
-        return this.#models[modelName];
     }
 
     static {

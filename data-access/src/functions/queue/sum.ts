@@ -10,9 +10,8 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
   const sum = data.processedNumber1 + data.processedNumber2;
   context.log("[SumQueueHandler] Sum - ", sum);
 
-  await MongoConnection.connect();
-  const DataModel = MongoConnection.getModel("DataModel");
-  const dataModelResult = await DataModel.updateOne(
+  const connection = await MongoConnection.getConnection();
+  const dataModelResult = await connection.model("DataModel").updateOne(
     {
       userId: data.userId,
     },
