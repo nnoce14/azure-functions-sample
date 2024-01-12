@@ -1,5 +1,6 @@
 import { InvocationContext, app } from "@azure/functions";
 import { Counter } from "../../counter";
+import { MongoConnection } from "../../mongo/connection";
 
 export async function sumQueueHandler(queueItem: any, context: InvocationContext): Promise<void> {
   context.log("[SumQueueHandler] Queue Item - ", queueItem);
@@ -8,6 +9,22 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
   console.log("data", data);
   const sum = data.processedNumber1 + data.processedNumber2;
   context.log("[SumQueueHandler] Sum - ", sum);
+
+  await MongoConnection.connect();
+  const DataModel = MongoConnection.getModel("DataModel");
+  const dataModelResult = await DataModel.updateOne(
+    {
+      userId: data.userId,
+    },
+    {
+      number1: data.processedNumber1,
+      number2: data.processedNumber2,
+      sum,
+      isDataUpdated: true,
+    }
+  );
+
+  context.log("[SumQueueHandler] Created Data Model - ", dataModelResult)
 
   let counter = Counter.getInstance();
   counter.increment();
