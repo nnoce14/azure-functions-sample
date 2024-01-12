@@ -10,9 +10,8 @@ export async function getDataModel(request: HttpRequest, context: InvocationCont
     context.log("HTTP function processed request for url %s", request.url);
     const data = (await request.json()) as DataType;
 
-    await MongoConnection.connect();
-    const DataModel = MongoConnection.getModel("DataModel");
-    const dataModelResult = await DataModel.findOne({
+    const connection = await MongoConnection.getConnection();
+    const dataModelResult = await connection.model("DataModel").findOne({
         userId: data.userId,
     });
 
