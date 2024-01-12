@@ -1,0 +1,10 @@
+POST http://localhost:7071/api/http/process-numbers
+
+{
+    "inputNumber1": 1,
+    "inputNumber2": 2
+}
+
+### 
+
+GET http://localhost:7071/api/helloWorld1

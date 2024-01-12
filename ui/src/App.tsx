@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { InputNumber, Form, Button, Typography } from "antd";
+import axios from "axios";
 
 const FormNamePath = {
   Number1: "inputNumber1",
@@ -26,6 +27,13 @@ function App() {
     const number2 = values[FormNamePath.Number2];
     console.log("Number 1: ", number1);
     console.log("Number 2: ", number2);
+
+    axios.post("http://localhost:7071/api/http/process-numbers", { number1, number2 }).then((response) => {
+      console.log("Response: ", response);
+      // setResult(response.data.result);
+      // setCounter(response.data.counter);
+    });
+
   };
 
   return (

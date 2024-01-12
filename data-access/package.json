@@ -2,7 +2,7 @@
   "name": "data-access",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/functions/**/*.js",
+  "main": "dist/src/functions/**/*.js",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc",
@@ -11,15 +11,14 @@
     "start": "npm-run-all --parallel start:host watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.11.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.3.3"
-  },
   "dependencies": {
     "@azure/functions": "^4.1.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "azure-functions-core-tools": "^4.x",
+    "@types/node": "18.x",
+    "typescript": "^5.3.3",
+    "rimraf": "^5.0.0"
   }
 }
