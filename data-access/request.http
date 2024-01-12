@@ -9,3 +9,11 @@ POST http://localhost:7071/api/http/process-numbers
 ### 
 
 GET http://localhost:7071/api/helloWorld1
+
+###
+
+POST http://localhost:7071/api/http/get-data
+
+{
+    "userId": ""
+}
