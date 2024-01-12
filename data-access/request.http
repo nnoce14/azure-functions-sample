@@ -17,3 +17,11 @@ POST http://localhost:7071/api/http/get-data
 {
     "userId": ""
 }
+
+###
+
+POST http://localhost:7071/api/http/reset-data
+
+{
+    "userId": ""
+}
