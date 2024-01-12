@@ -1,8 +1,8 @@
 POST http://localhost:7071/api/http/process-numbers
 
 {
-    "inputNumber1": 1,
-    "inputNumber2": 2
+    "number1": 1,
+    "number2": 2
 }
 
 ### 

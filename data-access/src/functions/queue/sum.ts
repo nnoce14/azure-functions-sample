@@ -1,4 +1,5 @@
 import { InvocationContext, app } from "@azure/functions";
+import { Counter } from "../../counter";
 
 export async function sumQueueHandler(queueItem: any, context: InvocationContext): Promise<void> {
   context.log("[SumQueueHandler] Queue Item - ", queueItem);
@@ -7,6 +8,11 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
   console.log("data", data);
   const sum = data.processedNumber1 + data.processedNumber2;
   context.log("[SumQueueHandler] Sum - ", sum);
+
+  let counter = Counter.getInstance();
+  counter.increment();
+  context.log("[SumQueueHandler] Counter - ", counter.count);
+
   return;
 }
 
