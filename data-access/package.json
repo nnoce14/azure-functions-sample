@@ -2,7 +2,7 @@
   "name": "data-access",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src/functions/*.js",
+  "main": "dist/src/functions/**/*.js",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc",

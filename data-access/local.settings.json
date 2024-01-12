@@ -3,7 +3,10 @@
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
-    "AzureWebJobsStorage": "",
-    "QUEUE_STORAGE_URL": "UseLocalDevelopmentStorage=true"
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "QUEUE_STORAGE_URL": "UseDevelopmentStorage=true"
+  },
+  "Host": {
+    "CORS": "*"
   }
 }
