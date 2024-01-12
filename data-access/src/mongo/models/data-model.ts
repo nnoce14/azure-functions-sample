@@ -6,6 +6,7 @@ export interface IData extends Document {
     number2: number;
     sum: number;
     userId: number;
+    isDataUpdated: boolean;
 }
 
 export const DataModelSchema = new Schema({
