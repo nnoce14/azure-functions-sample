@@ -3,43 +3,46 @@ import { MongoConnection } from "../../mongo/connection";
 import { Counter } from "../../counter";
 
 interface DataType {
-    userId: number;
+  userId: number;
 }
 
 export async function getDataModel(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
-    context.log("HTTP function processed request for url %s", request.url);
-    const data = (await request.json()) as DataType;
+  context.log("HTTP function processed request for url %s", request.url);
+  const userId = request.query.get("userId");
+  console.log("userId", userId);
 
-    const connection = await MongoConnection.getConnection();
-    const dataModelResult = await connection.model("DataModel").findOne({
-        userId: data.userId,
-    });
+  const connection = await MongoConnection.getConnection();
+  const dataModelResult = await connection.model("DataModel").findOne({
+    userId: userId,
+  });
 
-    let counter = Counter.getInstance();
+  console.log("dataModelResult", dataModelResult);
 
-    if (dataModelResult) {
-        return {
-            status: 200,
-            body: JSON.stringify({
-                sum: dataModelResult.sum ?? undefined,
-                count: counter.count,
-                isDataUpdated: dataModelResult.isDataUpdated
-            })
-        };
-    }
+  let counter = Counter.getInstance();
 
+  if (dataModelResult) {
     return {
-        status: 204,
-        body: JSON.stringify({
-            sum: undefined,
-            count: counter.count
-        })
+      status: 200,
+      body: JSON.stringify({
+        sum: dataModelResult.sum ?? undefined,
+        count: counter.count,
+        isDataUpdated: dataModelResult.isDataUpdated,
+      }),
     };
+  }
+
+  return {
+    status: 204,
+    body: JSON.stringify({
+      sum: undefined,
+      count: counter.count,
+    }),
+  };
 }
 
 app.http("getData", {
-    methods: ["POST"],
-    authLevel: "anonymous",
-    route: "http/get-data",
-    handler: getDataModel
+  methods: ["GET"],
+  authLevel: "anonymous",
+  route: "http/get-data",
+  handler: getDataModel,
 });
