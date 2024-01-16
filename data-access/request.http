@@ -17,3 +17,20 @@ POST http://localhost:7071/api/http/get-data
 {
     "userId": ""
 }
+
+###
+
+POST http://localhost:7071/api/http/reset-data
+
+{
+    "userId": ""
+}
+
+###
+
+POST http://localhost:7071/api/http/upload-file/testData.json
+Content-Type: application/json
+
+{
+    "name": "Test Data"
+}
