@@ -1,18 +1,11 @@
-import {
-  app,
-  HttpRequest,
-  HttpResponseInit,
-  InvocationContext,
-} from "@azure/functions";
+import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { blobOutput } from "../../blobStorage";
 
-export async function getUploadFile(
-  request: HttpRequest,
-  context: InvocationContext
-): Promise<HttpResponseInit> {
+export async function getUploadFile(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`HTTP function processed request for url ${request.url}`);
-  const content = await request.formData();
-  context.extraOutputs.set(blobOutput, content);
+  const body = await request.body;
+
+  context.extraOutputs.set(blobOutput, (await body.values().next()).value);
   return { body: `Uploaded: ${request.url}` };
 }
 

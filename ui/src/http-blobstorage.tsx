@@ -1,5 +1,6 @@
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload, UploadFile, UploadProps, message } from "antd";
+import axios from "axios";
 import { FC, useState } from "react";
 
 interface HttpBlobstorageProps {}
@@ -13,11 +14,14 @@ export const HttpBlobstorage: FC<HttpBlobstorageProps> = (props) => {
 
     formData.append("uploadedFile", file);
     try {
-      const response = await fetch(`http://localhost:7071/api/http/upload-file/${file.name}`, {
+      const response = await axios({
+        url: `http://localhost:7071/api/http/upload-file/${file.name}`,
         method: "POST",
-        body: formData,
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-
       if (response.status !== 200) {
         message.error("Fail to upload");
         return;
@@ -33,7 +37,7 @@ export const HttpBlobstorage: FC<HttpBlobstorageProps> = (props) => {
     onChange: (info) => {
       if (info.file.status === "uploading") {
         console.log("uploading", info.file, info.fileList);
-        return
+        return;
       }
       if (info.file.status === "done") {
         message.success(`${info.file.name} file uploaded successfully`);
