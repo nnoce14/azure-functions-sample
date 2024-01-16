@@ -1,4 +1,4 @@
-import { app, HttpRequest, HttpResponseInit, InvocationContext, output } from '@azure/functions';
+import { app, HttpRequest, InvocationContext, output } from '@azure/functions';
 import { Counter } from '../../counter';
 
 interface SampleDataType {
@@ -37,7 +37,7 @@ app.http("processNumbers", {
       userId
     });
 
-    context.extraOutputs.set(queueOutput, result);
+    context.extraOutputs.set(queueOutput, result); // send result to queue
 
     return {
       status: 200,

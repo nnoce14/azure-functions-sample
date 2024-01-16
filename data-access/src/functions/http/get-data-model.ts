@@ -6,12 +6,13 @@ interface DataType {
   userId: number;
 }
 
+// get a record from the database
 export async function getDataModel(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log("HTTP function processed request for url %s", request.url);
   const userId = request.query.get("userId");
   console.log("userId", userId);
 
-  const connection = await MongoConnection.getConnection();
+  const connection = await MongoConnection.getConnection(); // singleton
   const dataModelResult = await connection.model("DataModel").findOne({
     userId: userId,
   });
