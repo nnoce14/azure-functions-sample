@@ -34,3 +34,18 @@ Content-Type: application/json
 {
     "name": "Test Data"
 }
+
+###
+
+POST http://localhost:7071/api/orchestrators/requestApproval
+Content-Type: application/json
+
+"requestID": "1"
+
+
+###
+
+GET http://localhost:7071/api/orchestrators/raiseEventToOrchestration
+Content-Type: application/json
+
+"true"
