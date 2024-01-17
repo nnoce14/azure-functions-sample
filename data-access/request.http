@@ -40,12 +40,17 @@ Content-Type: application/json
 POST http://localhost:7071/api/orchestrators/requestApproval
 Content-Type: application/json
 
-"requestID": "1"
-
+{
+    "requestID": "1"
+}
 
 ###
 
-GET http://localhost:7071/api/orchestrators/raiseEventToOrchestration
+# POST http://localhost:7071/api/raiseEventToOrchestration
+POST http://localhost:7071/api/orchestrators/requestApproval/input
 Content-Type: application/json
 
-"true"
+{
+    "instanceId": "093ec84d53b547baadb6b01a34f9df63",
+    "approved": false
+}
