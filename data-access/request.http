@@ -34,3 +34,16 @@ Content-Type: application/json
 {
     "name": "Test Data"
 }
+
+###
+
+GET  http://localhost:7071/api/signalEntityDemo?action=add&amount=2
+
+
+###
+
+GET  http://localhost:7071/api/signalEntityDemo?action=get
+
+###
+
+GET  http://localhost:7071/api/signalEntityDemo?action=reset
