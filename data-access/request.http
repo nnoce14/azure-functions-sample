@@ -3,7 +3,7 @@ POST http://localhost:7071/api/http/process-numbers
 {
     "number1": 7,
     "number2": 4,
-    "userId": ""
+    "userId": "111"
 }
 
 ### 
@@ -47,3 +47,9 @@ GET  http://localhost:7071/api/signalEntityDemo?action=get
 ###
 
 GET  http://localhost:7071/api/signalEntityDemo?action=reset
+### 
+POST http://localhost:7071/api/orchestrators/start-orchestrator
+
+{
+    "userId": "111"
+}
