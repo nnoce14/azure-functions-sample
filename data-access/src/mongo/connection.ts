@@ -9,16 +9,19 @@ export class MongoConnection {
         if (!this.#connection || (this.#connection.readyState !== 1 && this.#connection.readyState !== 2)) {
             console.log('MongoDB Connection not found. Creating new connection...');
             const connectionString = process.env.MONGODB_URI;
-
+            console.log("creating a new DB connection")
             this.#connection = await createConnection(connectionString, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 autoIndex: true
             } as ConnectOptions);
 
+            
+
             ModelLoader.loadModels(this.#connection);
         }
 
+        console.log("returning the singleton connection")
         return this.#connection;
     }
 
