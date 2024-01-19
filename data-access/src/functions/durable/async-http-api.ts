@@ -26,8 +26,8 @@ const httpStart: HttpHandler = async (request: HttpRequest, context: InvocationC
   return client.createCheckStatusResponse(request, instanceId);
 };
 
-app.http("httpStart", {
-  route: "orchestrators/{orchestratorName}",
+app.http("asyncHttpApi", {
+  route: "asyncHttpApi/{orchestratorName}",
   extraInputs: [df.input.durableClient()],
   handler: httpStart,
 });
