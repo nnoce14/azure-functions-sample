@@ -1,5 +1,3 @@
-import { DurableOrchestrationContext } from "durable-functions";
-import { calculator } from "./calculator-example";
 import {
   HttpHandler,
   HttpRequest,
