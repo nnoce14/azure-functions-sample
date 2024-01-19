@@ -12,8 +12,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@as-integrations/azure-functions": "github:apollo-server-integrations/apollo-server-integration-azure-functions#pull/66",
     "@azure/functions": "^4.1.0",
     "durable-functions": "^3.0.0",
+    "graphql": "^16.8.1",
     "luxon": "^3.4.4",
     "mongoose": "^8.0.4"
   },
