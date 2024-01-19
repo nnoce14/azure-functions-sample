@@ -17,6 +17,8 @@
     "@azure/functions": "^4.1.0",
     "durable-functions": "^3.0.0",
     "graphql": "^16.8.1",
+    "mongoose": "^8.0.4",
+    "readdirp": "^3.6.0",
     "luxon": "^3.4.4",
     "mongoose": "^8.0.4"
   },

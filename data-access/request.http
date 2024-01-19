@@ -47,9 +47,17 @@ GET  http://localhost:7071/api/signalEntityDemo?action=get
 ###
 
 GET  http://localhost:7071/api/signalEntityDemo?action=reset
-### 
+###
 POST http://localhost:7071/api/orchestrators/start-orchestrator
 
 {
     "userId": "111"
 }
+
+
+###
+
+POST http://localhost:7071/api/orchestrators/backupSiteContent
+Content-Type: application/json
+
+"/Volumes/files/src/azure-functions-sample"
