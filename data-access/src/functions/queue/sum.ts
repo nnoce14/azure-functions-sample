@@ -20,10 +20,13 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
       number2: data.processedNumber2,
       sum: sum,
       isDataUpdated: true,
+    },
+    {
+      upsert: true,
     }
   );
 
-  context.log("[SumQueueHandler] Created Data Model - ", dataModelResult)
+  context.log("[SumQueueHandler] Created Data Model - ", dataModelResult);
 
   let counter = Counter.getInstance();
   counter.increment();
