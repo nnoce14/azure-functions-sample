@@ -1,6 +1,6 @@
 import { InvocationContext, app } from "@azure/functions";
 import { Counter } from "../../counter";
-import { MongoConnection } from "../../mongo/connection";
+import { MongoConnection } from "../../infrastructure/cosmos-db/connection";
 
 export async function sumQueueHandler(queueItem: any, context: InvocationContext): Promise<void> {
   context.log("[SumQueueHandler] Queue Item - ", queueItem);
@@ -20,6 +20,9 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
       number2: data.processedNumber2,
       sum: sum,
       isDataUpdated: true,
+    },
+    {
+      upsert: true,
     }
   );
 
