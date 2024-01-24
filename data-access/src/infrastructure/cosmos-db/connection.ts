@@ -10,9 +10,9 @@ export class MongoConnection {
     }
 
     public static async getConnection(): Promise<Connection> {
+        const connectionString = process.env.COSMOSDB_URL;
         if (!this.#connection) {
             console.log('MongoDB Connection not found. Creating new connection...');
-            const connectionString = process.env.COSMOSDB_URL;
             console.log("creating a new DB connection")
             this.#connection = createConnection(connectionString, {
                 useNewUrlParser: true,
@@ -24,7 +24,7 @@ export class MongoConnection {
         }
          else if (this.#connection.readyState === 0) {
             console.log('MongoDB Connection found but disconnected. Reconnecting...');
-            await this.#connection.openUri(process.env.MONGODB_URI2);
+            await this.#connection.openUri(connectionString);
          }
 
         console.log("returning the singleton connection")
