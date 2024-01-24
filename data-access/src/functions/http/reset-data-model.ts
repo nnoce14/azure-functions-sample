@@ -1,5 +1,5 @@
 import { HttpRequest, HttpResponseInit, InvocationContext, app } from "@azure/functions";
-import { MongoConnection } from "../../mongo/connection";
+import { MongoConnection } from "../../infrastructure/cosmos-db/connection";
 
 interface ResetDataType {
     userId: number;
@@ -14,16 +14,14 @@ export async function resetData(request: HttpRequest, context: InvocationContext
         {
             userId: userId,
         },
-        { $unset: {
-            number1: 1,
-            number2: 1,
-            sum: 1,
-          }
-        },
-        {
-          $set: {
-            isDataUpdated: true,
-          }
+        {   $unset: {
+                number1: 1,
+                number2: 1,
+                sum: 1,
+            },
+            $set: {
+                isDataUpdated: true,
+            }
         }
     );
 

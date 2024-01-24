@@ -1,6 +1,6 @@
 import { ConnectOptions } from 'mongoose';
 import * as df from "durable-functions";
-import { MongoConnection } from "../../mongo/connection";
+import { MongoConnection } from '../../infrastructure/cosmos-db/connection';
 
 df.app.client.http("startUpdateDBConcurrentlyDemo", {
   route: "updateDBConcurrentlyDemo",
