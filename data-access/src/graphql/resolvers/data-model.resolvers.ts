@@ -1,12 +1,9 @@
-import { MongoConnection } from "../../mongo/connection";
+import { Context as ApolloContext } from "../context";
 
 export const DataModelResolvers = {
     Query: {
-        getDataModelByUserId: async (parent: any, args: any, context: any, info: any) => {
-            const { userId } = args;
-            const connection = await MongoConnection.getConnection();
-            const dataModel = await connection.model("DataModel").findOne({ userId });
-            return dataModel;
+        getDataModelByUserId: async (parent: any, args: any, context: ApolloContext, info: any) => {
+            return await context.dataSources.dataModelCosmosdbApi.getDataModelByUserId(args.userId);
         }
     }
 };
