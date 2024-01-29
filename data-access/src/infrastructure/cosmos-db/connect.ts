@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { MongoConnection } from './connection';
 
 export const disconnect = async () => {
   await mongoose.connection.close();
@@ -85,7 +84,6 @@ export const connect = async () => {
         //   poolSize: Number(process.env.COSMOSDB_POOL_SIZE)
       } as mongoose.ConnectOptions)
       .then(() => {
-        MongoConnection.initialize(mongoose.connection);
         console.log(`🗄️ Successfully connected Mongoose to ${mongoose.connection.name} 🗄️`)
       });
 

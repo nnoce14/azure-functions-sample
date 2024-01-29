@@ -1,5 +1,5 @@
 import { HttpRequest, HttpResponseInit, InvocationContext, app } from "@azure/functions";
-import { MongoConnection } from "../../infrastructure/cosmos-db/connection";
+import { DataModel } from "../../graphql/data-sources/cosmos-db";
 
 interface ResetDataType {
     userId: number;
@@ -9,8 +9,7 @@ export async function resetData(request: HttpRequest, context: InvocationContext
     context.log("HTTP function processed request for url %s", request.url);
     const { userId } = (await request.json()) as ResetDataType;
 
-    const connection = await MongoConnection.getConnection();
-    const dataModelResult = await connection.model("DataModel").updateOne(
+    const dataModelResult = await DataModel.updateOne(
         {
             userId: userId,
         },
@@ -20,7 +19,7 @@ export async function resetData(request: HttpRequest, context: InvocationContext
                 sum: 1,
             },
             $set: {
-                isDataUpdated: true,
+                isDataUpdated: false,
             }
         }
     );
