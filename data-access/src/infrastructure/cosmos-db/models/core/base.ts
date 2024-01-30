@@ -1,10 +1,10 @@
 import { Document, SchemaOptions } from "mongoose";
 
 export interface MongoBase {
-    id?: any;
-    schemaVersion: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+  id?: any;
+  schemaVersion: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Base extends Document,MongoBase  {
