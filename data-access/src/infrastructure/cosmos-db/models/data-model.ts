@@ -1,5 +1,5 @@
 import { Schema, model, Model, ObjectId } from 'mongoose';
-import { Base, BaseOptions } from './core/base';
+import { Base } from './core/base';
 
 export interface IDataModel extends Base {
     number1: number;
