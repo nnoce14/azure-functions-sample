@@ -2,7 +2,7 @@
 
 overwrite: true
 schema:
-  - './src/graphql/schema/core/graphql-tools-scalars.ts'
+  - './src/graphql/schema/core/graphql-tools-scalar.ts'
   - './src/graphql/schema/**/**.graphql'
 # documents: '../ui/src/**/**.graphql'
 generates:
