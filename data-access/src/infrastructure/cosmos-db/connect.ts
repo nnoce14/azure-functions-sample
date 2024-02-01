@@ -71,7 +71,7 @@ export const connect = async () => {
         //  useNewUrlParser: true,
         //  useUnifiedTopology: true,
         //  useFindAndModify: false,
-        useUnifiedTopology: true,
+        // useUnifiedTopology: true,
         tlsInsecure: process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test', //only true for local developent - required for Azure Cosmos DB emulator
         dbName: process.env.COSMOSDB_DBNAME,
         // keepAlive: true,
