@@ -1,5 +1,5 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
-import { blobOutput } from "../../blobStorage";
+import { blobOutput } from "../blobStorage";
 
 export async function getUploadFile(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`HTTP function processed request for url ${request.url}`);

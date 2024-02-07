@@ -1,0 +1,16 @@
+type DataModel implements MongoBase {
+    userId: String!
+    isDataUpdated: Boolean!
+    number1: Int
+    number2: Int
+    sum: Int
+
+    id: ObjectID!
+    schemaVersion: String
+    createdAt: DateTime
+    updatedAt: DateTime
+}
+
+extend type Query {
+    dataModelByUserId(userId: String!): DataModel
+}

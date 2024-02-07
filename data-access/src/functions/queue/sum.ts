@@ -1,6 +1,6 @@
 import { InvocationContext, app } from "@azure/functions";
 import { Counter } from "../../counter";
-import { MongoConnection } from "../../mongo/connection";
+import { DataModel } from "../../graphql/data-sources/cosmos-db";
 
 export async function sumQueueHandler(queueItem: any, context: InvocationContext): Promise<void> {
   context.log("[SumQueueHandler] Queue Item - ", queueItem);
@@ -10,8 +10,7 @@ export async function sumQueueHandler(queueItem: any, context: InvocationContext
   const sum = data.processedNumber1 + data.processedNumber2;
   context.log("[SumQueueHandler] Sum - ", sum);
 
-  const connection = await MongoConnection.getConnection();
-  const dataModelResult = await connection.model("DataModel").updateOne(
+  const dataModelResult = await DataModel.updateOne(
     {
       userId: data.userId,
     },

@@ -1,6 +1,6 @@
 import { HttpRequest, HttpResponseInit, InvocationContext, app } from "@azure/functions";
-import { MongoConnection } from "../../mongo/connection";
 import { Counter } from "../../counter";
+import { DataModel } from "../../graphql/data-sources/cosmos-db";
 
 interface DataType {
   userId: number;
@@ -12,8 +12,7 @@ export async function getDataModel(request: HttpRequest, context: InvocationCont
   const userId = request.query.get("userId");
   console.log("userId", userId);
 
-  const connection = await MongoConnection.getConnection(); // singleton
-  const dataModelResult = await connection.model("DataModel").findOne({
+  const dataModelResult = await DataModel.findOne({
     userId: userId,
   });
 
@@ -21,11 +20,11 @@ export async function getDataModel(request: HttpRequest, context: InvocationCont
 
   let counter = Counter.getInstance();
 
-  if (dataModelResult) {
+  if (dataModelResult !== null) {
     return {
       status: 200,
       body: JSON.stringify({
-        sum: dataModelResult.sum ?? undefined,
+        sum: dataModelResult.sum ?? null,
         count: counter.count,
         isDataUpdated: dataModelResult.isDataUpdated,
       }),
@@ -33,9 +32,9 @@ export async function getDataModel(request: HttpRequest, context: InvocationCont
   }
 
   return {
-    status: 204,
+    status: 404,
     body: JSON.stringify({
-      sum: undefined,
+      sum: null,
       count: counter.count,
     }),
   };
