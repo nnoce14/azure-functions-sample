@@ -2,6 +2,7 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=5be3f6bd-b364-45b0-beef-e145126573b0;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "QUEUE_STORAGE_URL": "UseDevelopmentStorage=true",

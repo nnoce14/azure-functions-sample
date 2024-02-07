@@ -6,6 +6,7 @@ import { connect } from "../../infrastructure/cosmos-db/connect";
 import mongoose from "mongoose";
 import { GraphQLSchema } from "graphql";
 import { combinedSchema } from "./extensions/schema-builder";
+import { wrapFunctionHandler } from "../wrapper";
 export class ApolloServerRequestHandler {
   private readonly graphqlHandlerObj: ApolloServer<ApolloContext>;
   private portalTokenExtractor: PortalTokenValidation;
@@ -63,4 +64,8 @@ export class ApolloServerRequestHandler {
       console.log("Error initializing apollo server:", error);
     }
   }
+}
+
+export {
+  wrapFunctionHandler
 }
