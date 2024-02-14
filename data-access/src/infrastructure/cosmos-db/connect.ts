@@ -1,24 +1,50 @@
 import mongoose from 'mongoose';
+import { SeverityNumber, logs } from '@opentelemetry/api-logs';
 
 export const disconnect = async () => {
   await mongoose.connection.close();
 };
 
 export const connect = async () => {
+  const logger = logs.getLogger('default');
   mongoose.connection.on('open', () => {
     // console.log('open'); // commenting this to prevent console spam
   });
 
   mongoose.connection.on('close', () => {
     console.log('[Mongoose] close');
+    logger.emit({
+      body: `[MONGOOSE] Database connection closed`,
+      severityNumber: SeverityNumber.TRACE,
+      severityText: "TRACE",
+      attributes: {
+        "log.type": "LogRecord"
+      },
+    });
   });
 
   mongoose.connection.on('disconnected', () => {
     console.log('[Mongoose] disconnected');
+    logger.emit({
+      body: `[MONGOOSE] Database connection disconnected`,
+      severityNumber: SeverityNumber.TRACE,
+      severityText: "TRACE",
+      attributes: {
+        "log.type": "LogRecord"
+      },
+    });
   });
 
   mongoose.connection.on('connected', () => {
     console.log('[Mongoose] connected');
+    logger.emit({
+      body: `[MONGOOSE] Database connection established`,
+      severityNumber: SeverityNumber.TRACE,
+      severityText: "TRACE",
+      attributes: {
+        "log.type": "LogRecord"
+      },
+    });
   });
 
   mongoose.connection.on('connecting', () => {

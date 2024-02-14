@@ -1,6 +1,7 @@
 import { HttpRequest, HttpResponseInit, InvocationContext, app } from "@azure/functions";
 import { Counter } from "../../counter";
 import { DataModel } from "../../graphql/data-sources/cosmos-db";
+import { printConnectionInfo } from "../../infrastructure/utils/connection-info";
 
 interface DataType {
   userId: number;
@@ -15,7 +16,7 @@ export async function getDataModel(request: HttpRequest, context: InvocationCont
   const dataModelResult = await DataModel.findOne({
     userId: userId,
   });
-
+  printConnectionInfo();
   console.log("dataModelResult", dataModelResult);
 
   let counter = Counter.getInstance();

@@ -18,7 +18,7 @@ if (!process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || process.env.APPLICATIO
   console.log('Application Insights not configured');
 } else {
   const customResource = new Resource({
-    [SemanticResourceAttributes.SERVICE_NAMESPACE]: 'OwnerCommunity',
+    [SemanticResourceAttributes.SERVICE_NAMESPACE]: 'AzureFunctionsSample',
     [SemanticResourceAttributes.SERVICE_NAME]: 'DataAccess',
     [SemanticResourceAttributes.SERVICE_INSTANCE_ID]: 'Local',
   });
